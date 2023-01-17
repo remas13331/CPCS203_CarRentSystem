@@ -1,4 +1,5 @@
-THIS IS MY ASSIGNMENT 1 SOLUTION IN CPCS203 SUBJECT 
+-- THIS IS MY ASSIGNMENT 1 SOLUTION IN CPCS203 SUBJECT --
+-- I may generalize the code to make it more efficient --
 
  - Objectives of this assignment :
 
@@ -49,7 +50,7 @@ o CarsInfo.txt: A file that displays all the cars information in the system (The
 information in this file is read from inputCar.txt).
 o ReservationStatus.txt: which contains a log of all processed reservations
 including successful and unsuccessful reservation requests. For successful
-reservation requests, a detailed invoice is included.
-o AnalysisReport.txt which contains a record of how many each car type had been
+reservation requests, a detailed invoice is included. 
+AnalysisReport.txt which contains a record of how many each car type had been
 requested with each specific service.
 
