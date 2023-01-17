@@ -1,3 +1,10 @@
+/*
+Name : remas anwar alghamdi
+ID : 2205889
+Section : B2A
+
+ */
+
 import java.util.*;
 public class Reservation {
     private  String reservationCode;
@@ -11,13 +18,14 @@ public class Reservation {
     private  Service additionalServices;
 
     //constructor///////////////////////////////////////////////////////////
-    public  Reservation(String pickUpLocation, String dropOfLocation, Date pickUpDate, Date dropOfDate,Customer customer, Car car){
+    public  Reservation(String pickUpLocation, String dropOfLocation, Date pickUpDate, Date dropOfDate,Customer customer, Car car, Service additionalServices){
         this.pickUpLocation = pickUpLocation;
         this.dropOfLocation = dropOfLocation;
         this.pickUpDate = pickUpDate;
         this.dropOfDate = dropOfDate;
         this.customer = customer;
         this.car = car;
+        this.additionalServices = additionalServices;
     }
 
     //set & get code/////////////////////////////////////////////////////////
@@ -88,14 +96,3 @@ public class Reservation {
         return r;
     }
 }
-/*
-- reservation_code : String
-- pick_up_location : String
-- drop_of_location : String
-- pick_up : Date
-- drop_of : Date
-- date_of_reservation : Date
-- customer : Customer
-- car : Car
-- additional_services : Service
- */

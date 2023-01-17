@@ -1,3 +1,10 @@
+/*
+Name : remas anwar alghamdi
+ID : 2205889
+Section : B2A
+
+ */
+
 public class Customer {
     private  String firstName;
     private  String lastName;

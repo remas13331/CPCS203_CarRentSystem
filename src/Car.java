@@ -1,4 +1,9 @@
+/*
+Name : remas anwar alghamdi
+ID : 2205889
+Section : B2A
 
+ */
 public class Car {
     private String brand;
     private String carType ;
@@ -70,9 +75,10 @@ public class Car {
     //calc/////////////////////////////////////////
     public double calculateFinalPrice(){
         String r = carType.toLowerCase();
+        double carRate = 0;
         if (r.equals("luxury")){
-            car_rate = car_rate+(0.10*car_rate);
-            return car_rate;
+            carRate = car_rate+(0.10*car_rate);
+            return carRate;
         }else
            return car_rate;
     }

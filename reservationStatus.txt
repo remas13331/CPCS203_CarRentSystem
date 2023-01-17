@@ -1,0 +1,60 @@
+----------------------- Welcome To Car Renting Management System -----------------------
+
+--------------------------- Display All System Procedures -----------------------------
+
+DONE: The reservation is completed
+******Reservation Reference number : SO_713_2017
+
+******Customer information : Customer Name: Saleem Omar, Email: Saleem@gmail.com, Code: 786
+
+******Pick Up Location : Jeddah ******Drop Of Location : Jeddah
+
+******Pick Up Date : 2018-10-2  ******Drop Of Date : 2018-10-5
+
+******The Car Information : The car type: Mercedes ,Sport ,Year: 2017  ,Transmission: Automatic and Convertible
+
+******Additional Service : Service Navigation
+
+----------------------------------- Invoice Details -----------------------------------
+
+Number of reserved days: 3.0
+
+Initial Total : 0.0
+------------------------------ Additional Services Price ------------------------------
+
+Total After Additional Services : 150.0
+
+----------------------------- Final Payment after Discount-----------------------------
+
+Final Total  : 120.0
+
+
+SORRY: The reservation is NOT completed
+There is no available Car
+
+
+DONE: The reservation is completed
+******Reservation Reference number : AS_166_2017
+
+******Customer information : Customer Name: Arwa Shalabi, Email: Arwa@gmail.com, Code: 236
+
+******Pick Up Location : Jeddah ******Drop Of Location : Jeddah
+
+******Pick Up Date : 2019-0-3  ******Drop Of Date : 2019-0-4
+
+******The Car Information : The car type: Nissan ,Luxury ,Year: 2017  ,Transmission: Manual and not Convertible
+
+******Additional Service : Service Full_Insurance
+
+----------------------------------- Invoice Details -----------------------------------
+
+Number of reserved days: 1.0
+
+Initial Total : 0.0
+------------------------------ Additional Services Price ------------------------------
+
+Total After Additional Services : 700.0
+
+----------------------------- Final Payment after Discount-----------------------------
+
+Final Total  : 630.0
