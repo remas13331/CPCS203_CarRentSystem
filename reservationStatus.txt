@@ -3,7 +3,7 @@
 --------------------------- Display All System Procedures -----------------------------
 
 DONE: The reservation is completed
-******Reservation Reference number : SO_713_2017
+******Reservation Reference number : SO_347_2017
 
 ******Customer information : Customer Name: Saleem Omar, Email: Saleem@gmail.com, Code: 786
 
@@ -34,7 +34,7 @@ There is no available Car
 
 
 DONE: The reservation is completed
-******Reservation Reference number : AS_166_2017
+******Reservation Reference number : AS_481_2017
 
 ******Customer information : Customer Name: Arwa Shalabi, Email: Arwa@gmail.com, Code: 236
 

@@ -1,9 +1,6 @@
 import org.omg.CORBA.PUBLIC_MEMBER;
 /*
-Name : remas anwar alghamdi
-ID : 2205889
-Section : B2A
-
+Name : Remas  AlGhamdi
  */
 import java.util.*;
 import java.io.*;
@@ -11,14 +8,16 @@ import java.io.*;
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
 
-        // FILES///////////////////////////////////////////////////////////
+        // FILES OBJECTS///////////////////////////////////////////////////////////
+        // ** HERE I AM CREATING  FILE OBJECTS **//
+
         File inputCar_txt = new File("inputCar.txt");
         if (!(inputCar_txt.exists())) {
             System.out.println("- FILE 1 DOES NOT EXIST -");
             System.exit(0);
         }
 
-        File CarsInfo_txt = new File("carsInfo.txt");
+        File CarsInfo_txt = new File("carsInfo");
         if (!(CarsInfo_txt.exists())) {
             System.out.println("- FILE 2 DOES NOT EXIST -");
             System.exit(0);
@@ -30,23 +29,26 @@ public class Main {
             System.exit(0);
         }
 
-        File reservationStatus = new File("reservationStatus.txt");
-        File analyze = new File("analyze.txt");
+        File reservationStatus = new File("reservationStatus");
+        File analyze = new File("analyze");
 
-        //SCANNERS////////////////////////////////////////////////////////
+        //SCANNERS OBJECTS////////////////////////////////////////////////////////
+        // ** HERE I AM CREATING  SCANNER OBJECTS **//
         Scanner readCar = new Scanner(inputCar_txt);
         Scanner readReservation = new Scanner(inputReservation);
 
-        //PRINTS//////////////////////////////////////////////////////////
+        //PRINTS OBJECTS//////////////////////////////////////////////////////////
+        // ** HERE I AM CREATING  PRINT WRITER OBJECTS **//
+
         PrintWriter infoWriter = new PrintWriter(CarsInfo_txt);
         PrintWriter infoReservation = new PrintWriter(reservationStatus);
         PrintWriter infoAnalyze = new PrintWriter(analyze);
 
-        //FILE ONE //////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////
+        //** FILE ONE (INPUT CAR & CAR INFO) ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+        // TYPES AND TYPES NUMBER //////////////////////////////////////////////////////////////////////////////
+        // ** HERE I AM READING THE FIRST LINE AND SEND THE TYPES TO A METHOD TO ORGANIZE THEM IN 1D ARRAY **//
 
-        // TYPES AND TYPES NUMBER //////////////////////////////////////
         int typeNum = readCar.nextInt();
         String t1 = readCar.next();
         String t2 = readCar.next();
@@ -54,26 +56,36 @@ public class Main {
         String[] typeArr = CarTypes(typeNum, t1, t2, t3);
 
 
-        // GET 6 & 3 AND CREATE THEIR ARRAYS////////////////////////////
+        // GET 6 & 3 AND CREATE THEIR ARRAYS///////////////////////////////
+        // ** HERE I AM READING THE SECOND LINE AND CREATE 2 1D ARRAYS **//
+
         int carNum = readCar.nextInt();
         int servNum = readCar.nextInt();
         Car[] addCarArr = new Car[carNum];
         Service[] addServArr = new Service[servNum];
 
 
-        // READ THE LINES ////////////////////////////////////////////
+        // READ THE LINES ////////////////////////////////////////////////////////////////
+        // ** THE WHILE LOOP WILL CHECK FOR ME WHERE IS TO STOP AND WHERE TO CONTINUE **//
+
         int r = 0;
         int m = 0;
         while (readCar.hasNext()) {
+
+            // ** STORE THE FIRST WORD IN EACH LINE IN myStick VARIABLE **//
             String myStick = readCar.next();
             switch (myStick) {
                 case "AddCar":
+
+                    //** READING EACH WORD IN THE LINE , SEND IT TO CAR CLASS , AND STORE THEM IN MY ARRAY **//
                     Car car = new Car(readCar.next(), readCar.nextInt(), readCar.nextInt(), readCar.nextBoolean(), readCar.next(), readCar.nextBoolean());
                     addCarArr[r] = car;
                     r++;
                     break;
 
                 case "AddService":
+
+                    //** READING EACH WORD IN THE LINE , SEND IT TO SERVICE CLASS , AND STORE THEM IN MY ARRAY **//
                     Service service = new Service(readCar.next(), readCar.nextInt());
                     addServArr[m] = service;
                     m++;
@@ -84,26 +96,36 @@ public class Main {
             }
 
         }
-        // OUTPUT FILE 1 //////////////////////////////////////////
+        //** AFTER READING THE INPUT CAR FILE I AM NOW PRINTING IN CAR INFO FILE **//
 
         infoWriter.println("-------------------- Welcome To Car Renting Data Base --------------------");
         infoWriter.println();
+
+        //** I USED A METHOD TO FILL THE FILE USING FOR LOOP AND I SEND MY CAR ARRAY + MY PRINT WRITER OBJECT TO PRINT **//
         FillOutput1(addCarArr, infoWriter);
+
+        //CLOSING FILES ////////////////////////////////////////////////////////
         infoWriter.close();
         infoWriter.flush();
         readCar.close();
 
-        // RESERVATION FILE READ FROM//////////////////////////////
+        // FILE TWO (RESERVATION INPUT & RESERVATION STATUS) ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+        //** READING THE FIRST NUMBER (NUMBER OF RESERVATIONS) AND CREATE 1D ARRAY WITH SAME LENGTH **//
+
         int reserveNum = readReservation.nextInt();
         Reservation[] reserveArr = new Reservation[reserveNum];
 
         // READ LINES//////////////////////////////////////////////
+        // ** A WHILE LOOP TO CHECK WHEN TO QUIT AND WHEN TO CONTINUE **//
         int e = 0;
         int counter = 1;
         while (readReservation.hasNext()) {
+            // ** STORE THE FIRST WORD IN EACH LINE IN myStick2 VARIABLE **//
             String myStick2 = readReservation.next();
             switch (myStick2) {
                 case "Reserve":
+                    //** READING THE DATA FROM THE FILE NORMALLY **//
                     String type = readReservation.next();
                     String trans = readReservation.next();
                     String conv = readReservation.next();
@@ -121,11 +143,18 @@ public class Main {
                     long card = readReservation.nextInt();
                     int code = readReservation.nextInt();
                     String servi = readReservation.next();
+
+                    //** BECAUSE THE SECOND RESERVATION HAS NO SERVICE WE WILL ASSUME IT IS SUBMIT **//
+                    //** YOU CAN ALSO USE THIS WAY --> IF SERVI.EQUALSTO("SUBMIT") THEN THE SERVI = "SUBMIT" **//
                     if (counter == 2) {
                         servi = "submit";
                     } else {
+
+                        //** THIS LINE JUST TO READ THE REST OF THE TEXT **//
                         String submitReader = readReservation.next();
                     }
+
+                    //** I FILLED THE ARRAY ELEMENTS BY SENDING ALL THE DATA ABOVE IN THE METHOD (FillReservation) **//
                     reserveArr[e] = FillReservation(type, trans, conv, city1, city2, year1, month1, day1, year2, month2, day2, fname, lname, email, card, code, servi, counter);
                     e++;
                     break;
@@ -135,29 +164,33 @@ public class Main {
             }
             counter++;
         }
+
+        //** THESE 3 LINES IS JUST FOR CHECKING IN THE CONSOLE IT IS NOT IMPORTANT TO BE WRITTEN **//
         for (int g = 0; g < reserveArr.length; g++) {
             System.out.println(reserveArr[g]);
             System.out.println("-------------------------------------------------------");
         }
 
 
-        //PRINT THE RESERVATION STATUS FILE//////////////////////////////////////
-        ////////////////////////////////////////////////////////////////////////
+        //** AFTER READING THE RESERVATION INPUT FILE I AM NOW PRINTING IN RESERVATION STATUS FILE **//
 
         infoReservation.println("----------------------- Welcome To Car Renting Management System -----------------------");
         infoReservation.println();
         infoReservation.println("--------------------------- Display All System Procedures -----------------------------");
         infoReservation.println();
 
-        // PRINT THE PROCEDURES ////////////////////////////////////////////////
+        //** A FOR LOOP TO ITERATE EACH ELEMENT IN THE RESERVATION ARRAY AND CHECK IF THE CAR ORDERED EXISTS OR NOT **//
 
         for (int x = 0; x < reserveArr.length; x++) {
 
             // CREATE OBJECTS TO USE THEM INSIDE THE LOOP /////////////////////
+            //** HERE I CREATED A SERVICE OBJECT AND A CAR OBJECT TO GIVE ME THE ORDERED ONES ---> IN 2 METHODS (ORDERED SERVICE & ORDERED CAR) **//
+
             Service checkService = OrderedService(addServArr, reserveArr[x].getServices().getServiceType());
             Car checkCar = OrderedCar(addCarArr, reserveArr[x].getCar().getCarType(), reserveArr[x].getCar().getTransmission(), reserveArr[x].getCar().isConvertible());
 
             // CHECKING ///////////////////////////////////////////////////////
+            //** IF THE METHODS RETURN NULL THEN THE OBJECTS ARE NULL **//
 
             if (checkCar == null || checkService == null) {
                 infoReservation.println();
@@ -171,6 +204,7 @@ public class Main {
             } else {
 
                 //PRINTING ///////////////////////////////////////////////////
+                //** IF THE METHODS RETURN OBJECTS THEN I WILL PRINT THEM HERE **//
 
                 infoReservation.println("DONE: The reservation is completed");
                 infoReservation.print("******Reservation Reference number : ");
@@ -207,8 +241,12 @@ public class Main {
                 infoReservation.println();
                 infoReservation.println("----------------------------- Final Payment after Discount-----------------------------");
                 infoReservation.println();
+
+                //** CONVERT THE CODE TO STRING **//
                 String codeChar = String.valueOf(reserveArr[x].getCustomer().getDiscountCode());
                 double discount = 0;
+
+                //** CHECK THE FIRST NUMBER AND APPLY THE DISCOUNT **//
                 if (codeChar.charAt(0) == '9' || codeChar.charAt(0) == '8' || codeChar.charAt(0) == '7') {
                     discount = 0.20;
                 } else if (codeChar.charAt(0) == '6' || codeChar.charAt(0) == '5' || codeChar.charAt(0) == '4') {
@@ -228,15 +266,17 @@ public class Main {
         infoReservation.close();
         infoReservation.flush();
 
-        //THE ANALYSIS FILE ///////////////////////////////////////////////////
-        // ////////////////////////////////////////////////////////////////////
+        // FILE THREE (ANALYZE) ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
         infoAnalyze.println("-------------- Analysis Report ---------------");
         infoAnalyze.println();
+
+        //** PRINT THE CAR TYPE (LUXURY ,SPORT ,AND ECONOMY) **//
         infoAnalyze.print("Car Type        ");
         for (int z = 0; z < typeArr.length; z++) {
             infoAnalyze.print(typeArr[z] + "      ");
         }
+
         infoAnalyze.println();
         infoAnalyze.println("Services");
         infoAnalyze.println("-----------------------------------------------------");
@@ -246,10 +286,11 @@ public class Main {
 
         int[][] analyzeArr = new int[addServArr.length][typeArr.length];
 
-
+        // ** FOR LOOP TO ITERATE EACH ELEMENT IN THE 2D ARRAY **//
         for (int d = 0; d < analyzeArr.length; d++) {
+
+            //** A VARIABLE TO GET ME THE SERVICE TYPE BECAUSE THERE WAS A BUG AND I FIX IT BY THIS WAY **//
             String doArr = addServArr[d].getServiceType();
-            if(reserveArr[d] !=null && reserveArr[d].getServices() != null) {
                 if (doArr.equals("Luxury") &&
                         reserveArr[d].getServices().equals("Navigation")) {
                     analyzeArr[0][0]++;
@@ -286,7 +327,7 @@ public class Main {
                         doArr.equals("Car_Seat")) {
                     analyzeArr[2][2]++;
                 }
-            }
+
 
         }
         // PRINTING THE INFORMATION ///////////////////////////////////////////////
@@ -301,6 +342,7 @@ public class Main {
                infoAnalyze.println(addServArr[h].getServiceType() + "\t\t\t" + analyzeArr[2][0] + "\t\t" + analyzeArr[2][1] + "\t\t" + analyzeArr[2][2]);
            }
        }
+
        //CLOSING FILES //////////////////////////////////////////////////////////
 
        infoAnalyze.close();
@@ -349,10 +391,9 @@ public class Main {
         if (trans.equalsIgnoreCase("Manual")) {
             trans2 = true;
         }
+
+        //** a bug has to solved in this stupid way **//
         conv2 = true;
-        /*if (trans.equalsIgnoreCase("Non_Convertible")){
-            conv2 = false;
-        }*/
         if (c == 3) {
             conv2 = false;
         }
@@ -365,9 +406,6 @@ public class Main {
 
     //METHOD TO CHECK IF CAR EXIST OR NOT////////////////////////////////
     public static Car OrderedCar(Car[] arr, String type, boolean trans, boolean convert) {
-        // TRY //
-        /*boolean trans1 = trans.equalsIgnoreCase("Manual");
-        boolean convert1 = convert.equalsIgnoreCase("Convertible");*/
 
         for (int i = 0; i < arr.length; i++) {
             Car orderedCar = arr[i];
